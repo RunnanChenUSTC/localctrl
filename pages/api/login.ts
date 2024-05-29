@@ -32,7 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Execute the query
     const [rows] = await connection.execute<RowDataPacket[]>(
-          'SELECT * FROM user_UMN WHERE UserName = ? AND Password = ?', [username, password]
+          'SELECT * FROM user WHERE UserName = ? AND Password = ?', [username, password]
     );
 
     // Check if any rows are returned
@@ -43,8 +43,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const modifiedPassword = user.Password;
       const userProfile = user.Profile;
       // Determine the redirect URL based on the "2024Spring Socratic" value
-      const searchValue = experimentGroup["Search"];
-      const gptValue = experimentGroup["2024GPT"];
+      const searchValue = experimentGroup["2024Spring_Socratic"];
+      const gptValue = experimentGroup["2024Spring_Gamified"];
       const versionValue = experimentGroup["2024Spring_SocraticVersion"];
       const connectionConfig1 = {
         host: 'mysqlserverless.cluster-cautknyafblq.us-east-1.rds.amazonaws.com',
