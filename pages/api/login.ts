@@ -60,15 +60,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       let CID = '';
       let redirectUrl = ''; // Default redirect URL
       if(versionValue !== 1){
-      if (searchValue === 1) {
-        redirectUrl = 'https://bing.smartpal.chat/search'; // URL for Search == 1
-         CID = '1';
-      } else if (gptValue === 1) {
-        redirectUrl = 'https://scaffoldingumn.smartpal.chat'; // URL for Search == 0 and 2024GPT == 1
-        CID = '3';
+      if (versionValue === 2) {
+        redirectUrl = 'https://gpteven2.vercel.app'; // URL for Search == 1
+        //  CID = '1';
+      } else if (versionValue === 3) {
+        redirectUrl = 'https://gpteven3.vercel.app'; // URL for Search == 0 and 2024GPT == 1
+        // CID = '3';
       } else {
-        redirectUrl = 'https://baselineumn.smartpal.chat'; // URL for all other cases
-        CID = '2';
+        redirectUrl = 'hhttps://gptodds1.vercel.app'; // URL for all other cases
+        // CID = '2';
       }}else{
         redirectUrl = "https://gpteven1.vercel.app";
       }
