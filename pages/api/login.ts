@@ -75,10 +75,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       } else if (versionValue === 3) {
         redirectUrl = 'https://socrates-v3-adfasdfasdfasdfdasfdas.smartpal.chat'; // URL for Search == 0 and 2024GPT == 1
         // CID = '3';
-      } else {
-        redirectUrl = 'https://baseline-adfasdfasdfasdfdasfdas.smartpal.chat'; // URL for all other cases
+      } else if(versionValue === 4){
+        redirectUrl = 'https://socrates-v4-adfasdfasdfasdfdasfdas.smartpal.chat'; // URL for all other cases
         // CID = '2';
-      }}else{
+      }else{
+        redirectUrl = 'https://baseline-adfasdfasdfasdfdasfdas.smartpal.chat';
+      }
+    }else{
         redirectUrl = "https://socrates-v1-adfasdfasdfasdfdasfdas.smartpal.chat";
       }
       const secretKey = process.env.JWT_SECRET_KEY as string;  
