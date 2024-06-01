@@ -57,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const [promptRows] = await connection1.execute<RowDataPacket[]>(
         'SELECT Prompts FROM prompt WHERE PromptID = ?', [versionValue+1]
       );
-      const userprompt = promptRows.length > 0 ? promptRows[0].Prompt : null;
+      const userprompt = promptRows.length > 0 ? promptRows[0].Prompts : null;
       const [authRows] = await connection1.execute<RowDataPacket[]>(
         'SELECT Auth_Code FROM GptAuth WHERE Auth_ID = 1'
       );
