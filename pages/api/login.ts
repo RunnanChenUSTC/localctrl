@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Determine the redirect URL based on the "2024Spring Socratic" value
       const searchValue = experimentGroup["2024Spring_Socratic"];
       const gptValue = experimentGroup["2024Spring_Gamified"];
-      const versionValue = experimentGroup["2024Spring_SocraticVersion"];
+      const versionValue = experimentGroup["2024Spring_SocraticVersion"]||0;
       const connectionConfig1 = {
         host: 'mysqlserverless.cluster-cautknyafblq.us-east-1.rds.amazonaws.com',
         user: 'admin',
@@ -53,10 +53,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         database: 'GPT_experiment',
       };
       const connection1 = await mysql.createConnection(connectionConfig1);
+       // Fetch prompt based on versionValue
+      const [promptRows] = await connection1.execute<RowDataPacket[]>(
+        'SELECT Prompts FROM prompt WHERE PromptID = ?', [versionValue+1]
+      );
+      const userprompt = promptRows.length > 0 ? promptRows[0].Prompt : null;
       const [authRows] = await connection1.execute<RowDataPacket[]>(
         'SELECT Auth_Code FROM GptAuth WHERE Auth_ID = 1'
       );
       const authValue = authRows.length > 0 ? authRows[0].Auth_Code : null;
+      const [courseRows] = await connection1.execute<RowDataPacket[]>(
+        'SELECT CourseContent FROM course WHERE CourseID = 6'
+      );
+      const courseprofile = courseRows.length > 0 ? courseRows[0].CourseContent : null;
       let CID = '';
       let redirectUrl = ''; // Default redirect URL
       if(versionValue !== 1){
@@ -80,7 +89,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         password: modifiedPassword, // Storing passwords in JWT is not recommended
         experimentGroup: experimentGroup,
         gptAuth: authValue,
-        profile: userProfile
+        profile: userProfile,
+        prompt: userprompt,
+        course: courseprofile
         },
         secretKey,  // Secret key
         { expiresIn: '24h' }         // Token expiration

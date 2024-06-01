@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,9 +24,23 @@
       }
     ],
     "paths": {
-      "@next/third-parties/google": [ "./node_modules/@next/third-parties/dist/google" ],
-      "@/*": ["./*"]
+      "@next/third-parties/google": [
+        "./node_modules/@next/third-parties/dist/google"
+      ],
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "node_modules","app/calcTextareaHeight.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "node_modules",
+    "app/calcTextareaHeight.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
