@@ -42,6 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // const passwordSuffix = experimentGroup["2024Spring_Socratic"] === 1 ? 'scr!' : 'bsl?';
       const modifiedPassword = user.Password;
       const userProfile = user.Profile;
+      const usercontentID = user.CourseID||0;
       // Determine the redirect URL based on the "2024Spring Socratic" value
       const searchValue = experimentGroup["2024Spring_Socratic"];
       const gptValue = experimentGroup["2024Spring_Gamified"];
@@ -63,7 +64,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       );
       const authValue = authRows.length > 0 ? authRows[0].Auth_Code : null;
       const [courseRows] = await connection1.execute<RowDataPacket[]>(
-        'SELECT CourseContent FROM course WHERE CourseID = 6'
+        'SELECT CourseContent FROM course WHERE CourseID = ?'[usercontentID]
       );
       const courseprofile = courseRows.length > 0 ? courseRows[0].CourseContent : null;
       let CID = '';
