@@ -64,7 +64,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       );
       const authValue = authRows.length > 0 ? authRows[0].Auth_Code : null;
       const [courseRows] = await connection1.execute<RowDataPacket[]>(
-        'SELECT CourseContent FROM course WHERE CourseID = ?'[usercontentID]
+        'SELECT CourseContent FROM course WHERE CourseID = ?', [usercontentID]
       );
       const courseprofile = courseRows.length > 0 ? courseRows[0].CourseContent : null;
       let CID = '';
