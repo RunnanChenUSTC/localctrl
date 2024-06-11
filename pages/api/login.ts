@@ -100,13 +100,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         secretKey,  // Secret key
         { expiresIn: '24h' }         // Token expiration
       );
-      const cookies = new Cookies(req, res);
-      cookies.set('jwtToken', token, {
-        httpOnly: false,
-        secure: false, 
-        sameSite: 'none',
-        maxAge: 3600000 
-      });
+      // const cookies = new Cookies(req, res);
+      // cookies.set('jwtToken', token, {
+      //   httpOnly: false,
+      //   secure: false, 
+      //   sameSite: 'none',
+      //   maxAge: 3600000 
+      // });
       // Authentication successful, send the redirect URL
       res.status(200).json({ success: true, token, redirect: redirectUrl, CID: CID });
       // res.status(200).send({ message: 'Login successful', token: token });
