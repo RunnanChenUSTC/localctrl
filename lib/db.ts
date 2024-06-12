@@ -7,7 +7,7 @@ const pool = mysql.createPool({
   password: '35nPQH!ut;anvcA',
   database: 'GPT_experiment',
   waitForConnections: true,
-  connectionLimit: 100, // 连接池中保持的最大连接数
+  connectionLimit: 500, // 连接池中保持的最大连接数
   queueLimit: 0
 });
 
