@@ -52,12 +52,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           } else if (versionValue === 3) {
             redirectUrl = 'https://socrates-v3-adfasdfasdfasdfdasfdas.smartpal.chat';
           } else if (versionValue === 4) {
-            redirectUrl = 'https://socrates-v4-adfasdfasdfasdfdasfdas.smartpal.chat';
+            redirectUrl = 'https://socrates-v4-adfammmdfasdmmfdasfdas.smartpal.chat';
           } else {
             redirectUrl = 'https://baseline-adfasdfasdfasdfdasfdas.smartpal.chat';
           }
         } else {
-          redirectUrl = "https://socrates-v1-adfasdfasdfasdfdasfdas.smartpal.chat";
+          redirectUrl = "https://socrates-v1-adfasdfasdfamdfdamfdam.smartpal.chat";
         }
 
         const secretKey = process.env.JWT_SECRET_KEY as string;
