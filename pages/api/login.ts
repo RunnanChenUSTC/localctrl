@@ -80,7 +80,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).json({ success: false, message: 'Authentication failed' });
       }
     } finally {
-      connection.release(); // 确保连接在使用后被释放回连接池
+      connection.release(); // 确保连接在使用后被释放回连接s
     }
   } catch (error) {
     console.error('Database connection or query failed:', error);
